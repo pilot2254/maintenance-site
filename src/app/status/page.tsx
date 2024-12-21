@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator"
 import { ArrowLeft, CheckCircle2, XCircle, AlertCircle, Server, Database, Globe, Cpu, Cloud } from 'lucide-react'
 import Link from "next/link"
 import { TimeRemaining } from "@/components/time-remaining"
-import { RelativeTime } from "@/components/relative-time"
 
 // Status indicator component
 function StatusIndicator({ status }: { status: "operational" | "maintenance" | "degraded" }) {
@@ -39,6 +38,16 @@ function StatusIndicator({ status }: { status: "operational" | "maintenance" | "
       <span className="text-sm font-medium">{config.text}</span>
     </div>
   )
+}
+
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date)
 }
 
 export default function StatusPage() {
@@ -162,6 +171,26 @@ export default function StatusPage() {
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold tracking-tight">Recent Updates</h2>
             <div className="space-y-4">
+
+            <Card>
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <CardTitle>Website Shut Down</CardTitle>
+                      <CardDescription>Website rebuild in progress</CardDescription>
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {formatDate(new Date(2025, 1, 1,))} {/* December 21, 2024 12:00 AM */}
+                    </span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    The Content of redfox-studios.org was replaced with the maintenance pages.
+                  </p>
+                </CardContent>
+              </Card>
+
               <Card>
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -169,10 +198,9 @@ export default function StatusPage() {
                       <CardTitle>Maintenance Started</CardTitle>
                       <CardDescription>Scheduled system-wide maintenance began</CardDescription>
                     </div>
-                    <RelativeTime 
-                      date={new Date(Date.now() - 7200000)} 
-                      className="text-sm text-muted-foreground" 
-                    />
+                    <span className="text-sm text-muted-foreground">
+                      {formatDate(new Date(2024, 11, 21, 11, 30))} {/* December 21, 2024 9:30 AM */}
+                    </span>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -190,10 +218,9 @@ export default function StatusPage() {
                       <CardTitle>Database Optimization</CardTitle>
                       <CardDescription>Database maintenance in progress</CardDescription>
                     </div>
-                    <RelativeTime 
-                      date={new Date(Date.now() - 3600000)} 
-                      className="text-sm text-muted-foreground" 
-                    />
+                    <span className="text-sm text-muted-foreground">
+                      {formatDate(new Date(2024, 11, 21, 10, 15))} {/* December 21, 2024 10:15 AM */}
+                    </span>
                   </div>
                 </CardHeader>
                 <CardContent>
