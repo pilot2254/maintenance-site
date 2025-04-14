@@ -1,47 +1,27 @@
-import { type Metadata } from "next"
-import { Inter } from 'next/font/google'
-import "./globals.css"
+import type React from "react"
+import "@/app/globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { URL } from 'url';
+import { config } from "@/lib/config"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: {
-    default: "Site Maintenance",
-    template: "%s | Site Maintenance"
-  },
-  description: "We're currently performing scheduled maintenance to improve our services. We'll be back online soon.",
-  keywords: ["maintenance", "system update", "website maintenance", "scheduled maintenance", "system upgrade"],
-  authors: [{ name: "RedFox Studios" }],
-  openGraph: {
-    title: "Site Maintenance",
-    description: "We're currently performing scheduled maintenance to improve our services. We'll be back online soon.",
-    type: "website",
-    siteName: "RedFox Studios",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  metadataBase: new URL('https://redfox-studios.org'),
+  title: `Maintenance | ${config.companyName}`,
+  description: config.description,
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <main className="min-h-screen">{children}</main>
         </ThemeProvider>
       </body>
     </html>
