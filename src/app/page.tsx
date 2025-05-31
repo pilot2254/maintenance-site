@@ -2,7 +2,7 @@ import { CountdownTimer } from "@/components/countdown-timer"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { maintenanceConfig } from "@/components/maintenance-config"
 import { Button } from "@/components/ui/button"
-import { Mail, Settings2 } from "lucide-react"
+import { Cog, Mail } from "lucide-react"
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
@@ -43,7 +43,7 @@ export default function MaintenancePage() {
             {/* Status Icon */}
             <div className="flex justify-center">
               {/* Simplified icon presentation, made icon slightly larger */}
-              <Settings2 className="w-10 h-10 text-muted-foreground" />
+              <Cog className="w-10 h-10 text-muted-foreground" />
             </div>
             {/* Main Message */}
             <div className="space-y-4">
