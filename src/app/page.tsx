@@ -11,64 +11,74 @@ export default function MaintenancePage() {
   const maintenanceEndDate = new Date(maintenance.endDate)
 
   const socialLinks = Object.entries(social)
-    .filter(([, urlValue]) => urlValue) // Explicitly name urlValue, key is unused
+    .filter(([, urlValue]) => urlValue)
     .map(([platformName, urlValue]) => ({
       name: capitalize(platformName),
       url: urlValue as string,
     }))
 
   return (
-    // This div will now use the CSS variable --background, which changes with the theme.
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       {/* Header */}
       <header className="border-b border-border">
-        {" "}
-        {/* Use border-border */}
         <div className="max-w-5xl mx-auto px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 bg-primary text-primary-foreground rounded-md flex items-center justify-center">
               <span className="font-bold text-xs">{appearance.logo.fallbackText}</span>
             </div>
-            <span className="font-medium text-foreground">{company.name}</span> {/* Use text-foreground */}
+            <span className="font-medium text-foreground">{company.name}</span>
           </div>
           {appearance.showThemeToggle && <ThemeToggle />}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center">
-        <div className="max-w-xl mx-auto px-6 py-16 md:py-24 text-center">
-          <div className="space-y-10">
+      <main className="flex-1 flex items-center py-12 md:py-20">
+        {" "}
+        {/* Added more vertical padding to main */}
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <div className="space-y-8 md:space-y-10">
+            {" "}
+            {/* Adjusted main content spacing */}
+            {/* Status Icon */}
             <div className="flex justify-center">
-              <div className="w-14 h-14 bg-secondary text-secondary-foreground rounded-xl flex items-center justify-center border border-border">
-                <Settings2 className="w-7 h-7" /> {/* Icon color will be inherited or use text-muted-foreground */}
-              </div>
+              {/* Simplified icon presentation, made icon slightly larger */}
+              <Settings2 className="w-10 h-10 text-muted-foreground" />
             </div>
-
-            <div className="space-y-3">
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">{maintenance.title}</h1>
-              <p className="text-base md:text-lg text-muted-foreground">{maintenance.description}</p>
+            {/* Main Message */}
+            <div className="space-y-4">
+              {" "}
+              {/* Increased spacing around title */}
+              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">{maintenance.title}</h1>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                {" "}
+                {/* Added leading-relaxed */}
+                {maintenance.description}
+              </p>
             </div>
-
+            {/* Countdown */}
             {appearance.showCountdown && (
-              <div className="space-y-4">
-                <p className="text-sm text-muted-foreground">We expect to be back online in approximately:</p>
+              <div className="space-y-3 pt-2">
+                {" "}
+                {/* Adjusted spacing */}
+                <p className="text-sm text-muted-foreground/80">
+                  {" "}
+                  {/* Made text slightly more muted */}
+                  We expect to be back online in approximately:
+                </p>
                 <CountdownTimer targetDate={maintenanceEndDate} />
               </div>
             )}
-
-            <div className="space-y-8 pt-6">
+            {/* Actions & Links */}
+            <div className="space-y-8 pt-6 md:pt-8">
+              {" "}
+              {/* Increased top padding */}
               {maintenance.additionalMessage && (
                 <p className="text-sm text-muted-foreground">{maintenance.additionalMessage}</p>
               )}
-
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 {company.email && (
-                  <Button // Button component uses its own variants which use CSS vars
-                    variant="default" // Relies on primary, primary-foreground
-                    size="lg"
-                    asChild
-                  >
+                  <Button variant="default" size="lg" asChild>
                     <a href={`mailto:${company.email}`}>
                       <Mail className="w-4 h-4 mr-2" />
                       Contact Support
@@ -76,13 +86,13 @@ export default function MaintenancePage() {
                   </Button>
                 )}
               </div>
-
               {socialLinks.length > 0 && (
-                <div className="pt-6 border-t border-border">
-                  {/* Removed space-y-3 and the <p> tag */}
-                  <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mt-3">
+                <div className="pt-8 border-t border-border">
+                  {" "}
+                  {/* Increased top padding */}
+                  <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-3">
                     {" "}
-                    {/* Added mt-3 for spacing if needed */}
+                    {/* Increased gap-y */}
                     {socialLinks.map((link) => (
                       <a
                         key={link.name}

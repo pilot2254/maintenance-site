@@ -40,51 +40,54 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 }
     }
 
+    setTimeLeft(calculateTimeLeft()) // Initial calculation
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft())
     }, 1000)
-
-    setTimeLeft(calculateTimeLeft()) // Initial calculation
     return () => clearInterval(timer)
   }, [targetDate])
 
+  const timeUnits = [
+    { value: timeLeft.days, label: "Days" },
+    { value: timeLeft.hours, label: "Hours" },
+    { value: timeLeft.minutes, label: "Minutes" }, // Changed Mins to Minutes
+    { value: timeLeft.seconds, label: "Seconds" }, // Changed Secs to Seconds
+  ]
+
   if (!mounted) {
     // Placeholder for SSR or initial load to prevent layout shift
+    // Matching the refined style of the actual timer
     return (
-      <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-sm mx-auto">
-        {[...Array(4)].map((_, i) => (
+      <div className="grid grid-cols-4 gap-3 md:gap-4 max-w-md mx-auto">
+        {timeUnits.map((unit, i) => (
           <div
             key={i}
-            className="p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg text-center border border-zinc-200 dark:border-zinc-800"
+            className="bg-secondary rounded-lg p-3 md:p-4 text-center border border-border/50" // Softer border for placeholder
           >
-            <div className="text-2xl md:text-3xl font-mono font-medium text-zinc-700 dark:text-zinc-300">--</div>
-            <div className="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5">
-              Wait
-            </div>
+            <div className="text-3xl md:text-4xl font-mono font-medium text-foreground tabular-nums">--</div>
+            <div className="text-xs text-muted-foreground/70 uppercase tracking-wider mt-1">{unit.label}</div>
           </div>
         ))}
       </div>
     )
   }
 
-  const timeUnits = [
-    { value: timeLeft.days, label: "Days" },
-    { value: timeLeft.hours, label: "Hours" },
-    { value: timeLeft.minutes, label: "Mins" },
-    { value: timeLeft.seconds, label: "Secs" },
-  ]
-
   return (
-    <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-sm mx-auto">
+    <div className="grid grid-cols-4 gap-3 md:gap-4 max-w-md mx-auto">
+      {" "}
+      {/* Increased max-width slightly */}
       {timeUnits.map((unit, index) => (
         <div
           key={index}
-          className="p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg text-center border border-zinc-200 dark:border-zinc-800"
+          // Refined card styling: slightly softer border, consistent padding
+          className="bg-secondary rounded-lg p-3 md:p-4 text-center border border-border/70"
         >
-          <div className="text-2xl md:text-3xl font-mono font-medium text-zinc-700 dark:text-zinc-300">
+          <div className="text-3xl md:text-4xl font-mono font-medium text-foreground tabular-nums">
+            {/* `tabular-nums` ensures numbers take up the same space, preventing jitter */}
             {unit.value.toString().padStart(2, "0")}
           </div>
-          <div className="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5">
+          <div className="text-xs text-muted-foreground/80 uppercase tracking-wider mt-1">
+            {/* Made label text slightly more muted */}
             {unit.label}
           </div>
         </div>
