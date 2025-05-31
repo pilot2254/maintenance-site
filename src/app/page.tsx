@@ -1,9 +1,3 @@
-// In src/app/page.tsx, ensure the root div uses themeable classes like bg-background
-// instead of direct color classes like bg-zinc-50 if you want it to change with the theme variables.
-// The previous version of page.tsx was already good in this regard, using bg-zinc-50 dark:bg-zinc-950.
-// This is fine if you want specific overrides, but for general theming, rely on CSS variables.
-// Let's ensure the main page container uses `bg-background`.
-
 import { CountdownTimer } from "@/components/countdown-timer"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { maintenanceConfig } from "@/components/maintenance-config"
@@ -84,9 +78,11 @@ export default function MaintenancePage() {
               </div>
 
               {socialLinks.length > 0 && (
-                <div className="space-y-3 pt-6 border-t border-border">
-                  <p className="text-xs text-muted-foreground">Find us on:</p>
-                  <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
+                <div className="pt-6 border-t border-border">
+                  {/* Removed space-y-3 and the <p> tag */}
+                  <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mt-3">
+                    {" "}
+                    {/* Added mt-3 for spacing if needed */}
                     {socialLinks.map((link) => (
                       <a
                         key={link.name}
