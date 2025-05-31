@@ -1,57 +1,92 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import * as React from "react"
 
 interface CountdownTimerProps {
-  endDate: Date
+  targetDate: Date
 }
 
-interface TimeUnit {
-  value: number
-  label: string
+interface TimeLeft {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
 }
 
-export default function CountdownTimer({ endDate }: CountdownTimerProps) {
-  const [timeUnits, setTimeUnits] = useState<TimeUnit[]>([])
+export function CountdownTimer({ targetDate }: CountdownTimerProps) {
+  const [timeLeft, setTimeLeft] = React.useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+  const [mounted, setMounted] = React.useState(false)
 
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = endDate.getTime() - Date.now()
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
-      if (difference <= 0) {
-        return [
-          { value: 0, label: "days" },
-          { value: 0, label: "hours" },
-          { value: 0, label: "min" },
-          { value: 0, label: "sec" },
-        ]
+  React.useEffect(() => {
+    const calculateTimeLeft = (): TimeLeft => {
+      const difference = +targetDate - +new Date()
+      if (difference > 0) {
+        return {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        }
       }
-
-      return [
-        { value: Math.floor(difference / (1000 * 60 * 60 * 24)), label: "days" },
-        { value: Math.floor((difference / (1000 * 60 * 60)) % 24), label: "hours" },
-        { value: Math.floor((difference / 1000 / 60) % 60), label: "min" },
-        { value: Math.floor((difference / 1000) % 60), label: "sec" },
-      ]
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
     }
 
-    setTimeUnits(calculateTimeLeft())
-
     const timer = setInterval(() => {
-      setTimeUnits(calculateTimeLeft())
+      setTimeLeft(calculateTimeLeft())
     }, 1000)
 
+    setTimeLeft(calculateTimeLeft()) // Initial calculation
     return () => clearInterval(timer)
-  }, [endDate])
+  }, [targetDate])
+
+  if (!mounted) {
+    // Placeholder for SSR or initial load to prevent layout shift
+    return (
+      <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-sm mx-auto">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg text-center border border-zinc-200 dark:border-zinc-800"
+          >
+            <div className="text-2xl md:text-3xl font-mono font-medium text-zinc-700 dark:text-zinc-300">--</div>
+            <div className="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5">
+              Wait
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  const timeUnits = [
+    { value: timeLeft.days, label: "Days" },
+    { value: timeLeft.hours, label: "Hours" },
+    { value: timeLeft.minutes, label: "Mins" },
+    { value: timeLeft.seconds, label: "Secs" },
+  ]
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-sm mx-auto">
       {timeUnits.map((unit, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-md bg-primary/10 text-xl font-mono font-bold text-primary">
+        <div
+          key={index}
+          className="p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg text-center border border-zinc-200 dark:border-zinc-800"
+        >
+          <div className="text-2xl md:text-3xl font-mono font-medium text-zinc-700 dark:text-zinc-300">
             {unit.value.toString().padStart(2, "0")}
           </div>
-          <span className="mt-1 text-xs text-muted-foreground">{unit.label}</span>
+          <div className="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5">
+            {unit.label}
+          </div>
         </div>
       ))}
     </div>
