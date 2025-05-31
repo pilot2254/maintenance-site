@@ -9,15 +9,15 @@ export const maintenanceConfig = {
   // Company Information
   company: {
     name: "RedFox Studios",
-    website: "", // Set to empty string or remove to hide "Visit Our Site" button
-    email: "hello@redfoxstudios.com", // Optional: Support email
+    website: "", // Set to empty string or remove to hide "Visit Our Site" button - But this will be useless since this is a maintenance page
+    email: "support@redfox-studios.org", // Optional: Support email
   },
 
   // Maintenance Settings
   maintenance: {
     // When maintenance will end (ISO format)
-    // Example: "2024-12-31T23:59:59Z"
-    endDate: "2024-12-31T23:59:59Z",
+    // Example: "2025-08-10T12:00:00Z"
+    endDate: "2025-08-10T12:00:00Z",
 
     // Main heading
     title: "We'll be back soon!",
@@ -40,21 +40,20 @@ export const maintenanceConfig = {
 
     // Logo settings
     logo: {
-      show: true,
-      fallbackText: "RF", // Text shown in logo
+      show: false,
+      fallbackText: "", // Text shown in logo
     },
   },
 
   // Social Media Links (optional - remove or leave empty to hide a specific link)
   social: {
-    twitter: "https://twitter.com/redfoxstudios",
-    github: "https://github.com/redfoxstudios",
-    youtube: "https://youtube.com/redfoxstudios", // Add your YouTube link
-    reddit: "https://reddit.com/r/redfoxstudios", // Add your Reddit link
-    kofi: "https://ko-fi.com/redfoxstudios", // Add your Ko-Fi link
-    paypal: "https://paypal.me/redfoxstudios", // Add your PayPal link
-    // LinkedIn removed as per previous implicit request, can be added back if needed
-    // linkedin: "https://linkedin.com/company/redfoxstudios",
+    twitter: "https://twitter.com/pilot2254",
+    github: "https://github.com/redfox-studios",
+    youtube: "https://www.youtube.com/channel/UCuDrdYxaF5p-4X1Gmx-0FuQ",
+    bluesky: "https://bsky.app/profile/redfox-studios.org",
+    kofi: "https://ko-fi.com/pilot2254",
+    paypal: "https://paypal.me/pilot2254",
+    // linkedin: "https://linkedin.com/company/weDontHaveLinkedInYet", // Uncomment to add LinkedIn
   },
 } as const
 

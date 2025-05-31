@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils" // For conditionally applying classes
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" }) // Add variable for Tailwind
 
 export const metadata: Metadata = {
-  title: "Under Maintenance | RedFox Studios",
+  title: "Under Maintenance - RedFox Studios",
   description: "We're currently performing scheduled maintenance. We'll be back soon!",
   robots: "noindex, nofollow",
   themeColor: [
