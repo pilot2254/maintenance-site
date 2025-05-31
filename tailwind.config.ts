@@ -1,14 +1,23 @@
 import type { Config } from "tailwindcss"
+import tailwindcssAnimate from "tailwindcss-animate"
 
-const config: Config = {
+const config = {
+  darkMode: "class", // Crucial for next-themes
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{ts,tsx}",
+    "./src/components/**/*.{ts,tsx}",
+    "./src/app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}", // More inclusive path
   ],
-  darkMode: "class",
+  prefix: "", // Standard for shadcn/ui
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -66,7 +75,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-}
+  plugins: [tailwindcssAnimate], // Standard for shadcn/ui
+} satisfies Config
 
 export default config
