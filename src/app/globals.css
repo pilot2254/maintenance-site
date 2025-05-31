@@ -2,48 +2,42 @@
    If using v3, replace @import with @tailwind directives. */
 @import "tailwindcss"; /* For Tailwind CSS v4+ */
 
-/*
-  If you are using Tailwind CSS v3, use these instead:
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-*/
-
 @layer base {
   :root {
-    /* Using Zinc palette as requested */
-    --background: 240 5.9% 97.3%; /* zinc-50 */
-    --foreground: 240 10% 3.9%; /* zinc-900 */
+    /* Light Theme - Refined for a cleaner, Vercel-like aesthetic */
+    --background: 0 0% 100%; /* Pure white for main background */
+    --foreground: 240 10% 3.9%; /* zinc-900 - Strong text contrast */
 
-    --card: 240 5.9% 97.3%; /* zinc-50 */
+    --card: 240 5.9% 97.3%; /* zinc-50 - Subtle card background */
     --card-foreground: 240 10% 3.9%; /* zinc-900 */
 
     --popover: 240 5.9% 97.3%; /* zinc-50 */
     --popover-foreground: 240 10% 3.9%; /* zinc-900 */
 
     --primary: 240 10% 3.9%; /* zinc-900 */
-    --primary-foreground: 240 5.9% 97.3%; /* zinc-50 */
+    --primary-foreground: 0 0% 100%; /* White text on primary buttons */
 
-    --secondary: 240 4.8% 95.9%; /* zinc-100 */
+    --secondary: 240 4.8% 95.9%; /* zinc-100 - For secondary elements like icon bg */
     --secondary-foreground: 240 10% 3.9%; /* zinc-900 */
 
     --muted: 240 4.8% 95.9%; /* zinc-100 */
-    --muted-foreground: 240 3.8% 46.1%; /* zinc-500 */
+    --muted-foreground: 240 3.8% 46.1%; /* zinc-500 - Softer text for muted elements */
 
     --accent: 240 4.8% 95.9%; /* zinc-100 */
     --accent-foreground: 240 10% 3.9%; /* zinc-900 */
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 240 5.9% 97.3%; /* zinc-50 */
+    --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 240 5.9% 90%; /* zinc-200 */
+    --border: 240 5.9% 90%; /* zinc-200 - Subtle borders */
     --input: 240 5.9% 90%; /* zinc-200 */
-    --ring: 240 10% 3.9%; /* zinc-900 */
+    --ring: 240 10% 3.9%; /* zinc-900 - Focus ring */
 
     --radius: 0.5rem;
   }
 
   .dark {
+    /* Dark Theme - Stays as Zinc-based */
     --background: 240 10% 2.5%; /* zinc-950 */
     --foreground: 240 5.9% 97.3%; /* zinc-50 */
 
@@ -65,7 +59,7 @@
     --accent: 240 3.7% 15.9%; /* zinc-800 */
     --accent-foreground: 240 5.9% 97.3%; /* zinc-50 */
 
-    --destructive: 0 72.2% 50.6%; /* Slightly adjusted for dark */
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 240 5.9% 97.3%; /* zinc-50 */
 
     --border: 240 3.7% 15.9%; /* zinc-800 */
@@ -76,11 +70,11 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border)); /* Apply border color using CSS variable */
+    border-color: hsl(var(--border));
   }
   body {
     background-color: hsl(var(--background));
-    color: hsl(var(--foreground)); /* Apply base bg/text using CSS variables */
-    font-feature-settings: "rlig" 1, "calt" 1; /* Standard font feature settings */
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
