@@ -1,15 +1,17 @@
 import type { Config } from "tailwindcss"
 import tailwindcssAnimate from "tailwindcss-animate"
+import defaultTheme from "tailwindcss/defaultTheme" // Import defaultTheme
 
 const config = {
-  darkMode: "class", // Crucial for next-themes
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
     "./src/app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}", // More inclusive path
+    "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "", // Standard for shadcn/ui
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -19,6 +21,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...defaultTheme.fontFamily.mono],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,7 +81,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate], // Standard for shadcn/ui
+  plugins: [tailwindcssAnimate],
 } satisfies Config
 
 export default config
