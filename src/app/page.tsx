@@ -9,7 +9,7 @@ export default function Home() {
       <Header />
       
       <main className="flex-1 flex items-center justify-center px-4">
-        <div className="w-full max-w-4xl mx-auto text-center space-y-12">
+        <div className="w-full max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               {siteConfig.messages.title}
