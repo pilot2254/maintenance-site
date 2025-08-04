@@ -67,13 +67,13 @@ export function Countdown() {
   ]
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 text-center">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 text-center max-w-2xl mx-auto">
       {timeUnits.map((unit, index) => (
-        <div key={index} className="rounded-lg border bg-card p-4 shadow-sm">
-          <div className="text-3xl font-bold tabular-nums">
+        <div key={index} className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="text-3xl sm:text-4xl font-bold tabular-nums">
             {unit.value.toString().padStart(2, '0')}
           </div>
-          <div className="text-sm text-muted-foreground">{unit.label}</div>
+          <div className="text-sm sm:text-base text-muted-foreground mt-2">{unit.label}</div>
         </div>
       ))}
     </div>
