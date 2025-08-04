@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "Maintenance Mode",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  maintenanceEnd: "2025-02-01T12:00:00Z", // ISO string format
+  name: "RedFox Studios",
+  description: "Sorry for the inconvenience, we are currently undergoing maintenance.",
+  maintenanceEnd: "2026-01-01T12:00:00Z", // ISO string format - 2026-01-01 at 12:00 UTC
   messages: {
     title: "We'll be back soon!",
     subtitle: "Sorry for the inconvenience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    footerText: "All Rights Reserved"
+    description: "We know it's been a year, but please understand that this website is run by two students with busy schedules who are happy if they can find time for themselves.",
+    footerText: "RedFox Studios. All Rights Reserved"
   },
   countdown: {
     labels: {
