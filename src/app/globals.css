@@ -120,3 +120,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+  ::selection {
+    background-color: hsla(179, 100%, 40%, 0.1);
+    color: hsl(179, 100%, 40%);
+  }
+
+  ::-moz-selection {
+    background-color: hsla(179, 100%, 40%, 0.1);
+    color: hsl(179, 100%, 40%);
+  }
