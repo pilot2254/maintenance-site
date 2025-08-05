@@ -23,7 +23,7 @@ export function Countdown() {
     setMounted(true)
     
     const calculateTimeLeft = (): TimeLeft => {
-      const difference = +new Date(siteConfig.maintenanceEnd) - +new Date()
+      const difference = +new Date(siteConfig.maintenanceEnd) - Date.now()
       
       if (difference > 0) {
         return {
@@ -37,11 +37,13 @@ export function Countdown() {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 }
     }
 
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft())
+
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft())
     }, 1000)
 
-    setTimeLeft(calculateTimeLeft())
 
     return () => clearInterval(timer)
   }, [])

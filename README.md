@@ -1,3 +1,9 @@
+# RedFox Studios Maintenance Site
+
+A static maintenance page built with Next.js and optimized for static hosting.
+
+## Development
+
 ```bash
 # Install dependencies
 npm install
@@ -5,9 +11,6 @@ npm install
 # Run the development server
 npm run dev
 
-# Build the site
+# Build for static export
 npm run build
 ```
-
-TODO:
-- [ ] Optimize the website for static export.

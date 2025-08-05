@@ -7,16 +7,20 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+  robots: "noindex, nofollow",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
