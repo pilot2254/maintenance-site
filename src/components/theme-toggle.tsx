@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
@@ -13,26 +14,23 @@ export function ThemeToggle() {
     setMounted(true)
   }, [])
 
-  // Until the component is mounted, we can't know the theme, so render a placeholder or null.
-  // This prevents hydration mismatch.
   if (!mounted) {
-    // Render a simple div as a placeholder to maintain layout space
-    return <div className="w-9 h-9 rounded-md border border-zinc-200 dark:border-zinc-800 animate-pulse"></div>
+    return (
+      <Button variant="ghost" size="icon" className="size-9">
+        <div className="size-4" />
+      </Button>
+    )
   }
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="w-9 h-9 border-zinc-300 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      className="size-9"
     >
-      {theme === "dark" ? (
-        <Sun className="h-[1.1rem] w-[1.1rem] transition-all" />
-      ) : (
-        <Moon className="h-[1.1rem] w-[1.1rem] transition-all" />
-      )}
+      <Sun className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   )
