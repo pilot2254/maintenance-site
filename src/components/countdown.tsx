@@ -17,8 +17,11 @@ export function Countdown() {
     minutes: 0,
     seconds: 0
   })
+  const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
+    setMounted(true)
+    
     const calculateTimeLeft = (): TimeLeft => {
       const difference = +new Date(siteConfig.maintenanceEnd) - Date.now()
       
@@ -44,6 +47,19 @@ export function Countdown() {
 
     return () => clearInterval(timer)
   }, [])
+
+  if (!mounted) {
+    return (
+      <div className="grid grid-cols-4 gap-4 text-center">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="rounded-lg border bg-card p-4">
+            <div className="text-3xl font-bold">--</div>
+            <div className="text-sm text-muted-foreground">Loading</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   const timeUnits = [
     { value: timeLeft.days, label: siteConfig.countdown.labels.days },

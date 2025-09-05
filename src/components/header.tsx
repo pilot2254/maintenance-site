@@ -1,15 +1,5 @@
 import { siteConfig } from "@/config/site"
-import dynamic from "next/dynamic"
-import { Button } from "@/components/ui/button"
-
-const ThemeToggle = dynamic(() => import("@/components/theme-toggle").then(mod => ({ default: mod.ThemeToggle })), {
-  ssr: false,
-  loading: () => (
-    <Button variant="ghost" size="icon" className="size-9">
-      <div className="size-4" />
-    </Button>
-  )
-})
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   return (
