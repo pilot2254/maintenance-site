@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   robots: "noindex, nofollow",
   viewport: "width=device-width, initial-scale=1",
+  metadataBase: new URL('https://your-domain.com'), // Replace with your actual domain
 };
 
 export default function RootLayout({

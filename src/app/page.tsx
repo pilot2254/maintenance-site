@@ -1,7 +1,21 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Countdown } from "@/components/countdown"
 import { siteConfig } from "@/config/site"
+import dynamic from "next/dynamic"
+
+const Countdown = dynamic(() => import("@/components/countdown").then(mod => ({ default: mod.Countdown })), {
+  ssr: false,
+  loading: () => (
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 text-center max-w-2xl mx-auto">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div key={i} className="rounded-lg border bg-card p-6 shadow-sm">
+          <div className="text-3xl sm:text-4xl font-bold tabular-nums">--</div>
+          <div className="text-sm sm:text-base text-muted-foreground mt-2">Loading</div>
+        </div>
+      ))}
+    </div>
+  )
+})
 
 export default function Home() {
   return (
